@@ -1,0 +1,82 @@
+<html>
+    <head>               
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <script type="text/javascript" defer src="./js/face-api.js"></script>
+        <script type="text/javascript" defer src="./js/confetti.js"></script>
+        <script type="text/javascript" defer src="./js/main.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">        
+        <link rel="stylesheet" href="./css/style.css"/>
+    </head>
+    <body>
+        <div id="loadercontainer" class="loader_container">
+            <div id="loader" class="loader"></div>       
+            <b>Cargando...</b>
+        </div>     
+        <div id="generalcontainer" class="hidden">                      
+            
+            <div id="videocontainer" class="video_container">
+                <video class="video" id="video" width="300" height="300" autoplay muted></video>
+            </div>         
+            
+            <div id="leyenda" class="leyenda">
+                Buscando...
+                <div id="miniloader" class="mini_loader"></div>               
+            </div>  
+
+            <div id="gente" class="gente">
+                <p class="list_title">Personas encontradas:</p>
+                <ul class="list" id="ulgente"></ul>
+                <p class="note">* Selecciona quien no corresponda para borrarlo</p>
+                <button class="button reset" onclick="reiniciarbusqueda()">Reiniciar Búsqueda</button>
+            </div>  
+
+            <div id="continuar" class="hidden">
+                <p><b>¿Ya están todos? Dale continuar para jugar</b></p>
+                <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#myModal">Continuar</button>
+                <!--<button class="button" onclick="detenervideo()">Continuar</button>-->
+            </div>
+            <div id="ruleta" class="hidden">
+                <canvas id="idcanvas" width="300" height="300"></canvas>                            
+                <div class="mark-winner"></div>
+                <button class="button" onclick="startgame()" id="btnsortear">Jugar</button>
+                <button class="hidden" onclick="reveal()" id="btnrevelar">Revelar</button>
+            </div>                                
+        </div>        
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+            
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                    <h4 class="modal-title">Hey!</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+            
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <p>Estas por comenzar a jugar, se utilizará la cámara para grabar un video mientras juegas por lo que sería ideal estes dentro del cuadro.</p>                        
+                        <p>Una vez finalices el juego, dale al boton "Finalizar" para descargar el video.</p>                                                
+                        <p>Que se diviertan!!!</p>
+                    </div>
+            
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                    <button type="button" class="button" data-bs-dismiss="modal" onclick="comenzarjuego()">Aceptar</button>
+                    <button type="button" class="button reset" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+            
+                </div>
+            </div>
+        </div>
+        <div id="reveal" class="hidden">
+            <canvas class="confetti" id="confetti"></canvas>
+            <div id="revealcontent" class="revealcontent">
+            </div>
+            <button id="finalizar" type="button" class="button" onclick="stopRecording()">Finalizar</button>
+            <div id="descarga"></div>    
+        </div>
+    </body>
+</html>
