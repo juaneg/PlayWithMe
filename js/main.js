@@ -232,8 +232,8 @@ function startRecording() {
 }
 
 function stopRecording() {
-    recorder.ondataavailable = e => {    
-        var a = document.createElement('a');
+    var a = document.createElement('a');
+    recorder.ondataavailable = e => {            
         a.download = ['video_', (new Date() + '').slice(4, 28), '.webm'].join('');
         a.href = URL.createObjectURL(e.data);
         a.textContent = 'Descargar Video';
@@ -242,11 +242,12 @@ function stopRecording() {
         a.id = 'btndescarga';
         let descarga = document.getElementById("descarga");
         descarga.appendChild(a);
+        a.click();
     };
     recorder.stop();   
     stm.getTracks().forEach(function(track) { track.stop(); });
     document.getElementById("finalizar").classList.toggle('button');
-    document.getElementById("finalizar").classList.toggle('hidden');
+    document.getElementById("finalizar").classList.toggle('hidden');    
 }
 
 function eliminarpersona(name)
@@ -319,6 +320,18 @@ function reveal()
         }                    
     }
     revealcontent.innerHTML = content;
+
+    let image = document.createElement('img');
+    let title = document.createElement('p');
+    title.textContent = 'Esta es mi primer selfie!';
+    title.id = 'title';
+    image.src = './images/oli.jpeg';
+    image.id = 'selfie';
+    image.classList.toggle('selfie');
+    revealcontent.appendChild(title);
+    revealcontent.appendChild(image);
+    timeout = window.setTimeout(mostrarfotoreal, 3000);
+
     //reveal.appendChild(p);
     reveal.classList.toggle('hidden');
     reveal.classList.toggle('reveal');
@@ -333,7 +346,7 @@ function mostrarfoto() {
     let button = document.getElementById('btndescarga');    
     button.classList.toggle('button');
     button.classList.toggle('hidden');
-    let revealcontent = document.getElementById("revealcontent");  
+    /*let revealcontent = document.getElementById("revealcontent");  
     let image = document.createElement('img');
     let title = document.createElement('p');
     title.textContent = 'Esta es mi primer selfie!';
@@ -343,12 +356,12 @@ function mostrarfoto() {
     image.classList.toggle('selfie');
     revealcontent.appendChild(title);
     revealcontent.appendChild(image);
-    timeout = window.setTimeout(mostrarfotoreal, 2000);      
+    timeout = window.setTimeout(mostrarfotoreal, 2000);      */
 }
 
 function mostrarfotoreal(){
     let image = document.getElementById("selfie");      
     let title = document.getElementById("title");      
     title.textContent = 'jajajaj mentira, esta si es!'
-    image.src = '../images/selfie.jpg';        
+    image.src = './images/selfie.jpg';        
 }
