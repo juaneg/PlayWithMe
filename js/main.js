@@ -363,5 +363,5 @@ function mostrarfotoreal(){
     let image = document.getElementById("selfie");      
     let title = document.getElementById("title");      
     title.textContent = 'jajajaj mentira, esta si es!'
-    image.src = './images/selfie.jpg';        
+    image.src = './images/selfie.jpeg';        
 }
